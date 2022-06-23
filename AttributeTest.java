@@ -11,13 +11,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class AttributeTest extends BaseCl {
-	    @Test(description="First TestCase CreatLead", invocationCount=3)
-	     public void CreateLead() throws InterruptedException {
+	    @Test(description="First TestCase CreatLead", invocationCount=3, dataProvider="data")
+	     public void CreateLead(String CN, String FN, String LN) throws InterruptedException {
 		 driver.findElement(By.linkText("Leads")).click();
 		 driver.findElement(By.linkText("Create Lead")).click();
-		 driver.findElement(By.id("createLeadForm_companyName")).sendKeys("TestLeaf");
-		 driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Haja");
-		 driver.findElement(By.id("createLeadForm_lastName")).sendKeys("J");
+		 driver.findElement(By.id("createLeadForm_companyName")).sendKeys(CN);
+		 driver.findElement(By.id("createLeadForm_firstName")).sendKeys(FN);
+		 driver.findElement(By.id("createLeadForm_lastName")).sendKeys(LN);
 		 driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("Aswini");
 		 driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("Production");
 		 driver.findElement(By.id("createLeadForm_description")).sendKeys("Production is the significant part of organization ");
@@ -131,5 +131,12 @@ public class AttributeTest extends BaseCl {
 			   	System.out.println(title);
 			   	System.out.println("Merge Contact");
 			   }
+	                   @DataProvider
+			   public String[][] data() {
+				   String[][] data=new String[2][3];
+				   data[0][0]="TestLeaf";
+				   data[0][1]="Haja";
+				   data[0][2]="J";
+				   return data;			 
 			   }
-
+}
